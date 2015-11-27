@@ -1,0 +1,9 @@
+{
+	"base": "base.plist",
+	"patch": [],
+	"app": "app.plist",
+	"expected": {
+		"plist": "expected.plist",
+		"log": "expected.log"
+	}
+}

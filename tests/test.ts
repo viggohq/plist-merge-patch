@@ -3,6 +3,15 @@ import * as fs from "fs";
 import * as plistmergepatch from "../src/index";
 import * as path from "path";
 
+describe("plist-merge-patch", function() {
+  describe("in real case scenarios, can patch", function() {
+    var base = "real-use-cases/";
+    it("transport security to allow arbitrary loads", run(base + "transport-security-arbitrary-loads"));
+    it("a limit on the supported interface orientations", run(base + "limit-supported-interface-orientations"));
+    it("view controller status bar appearance, status bar style, and hidden", run(base + "status-bar-appearance-style-and-hidden"));
+  })
+});
+
 interface TestInfo {
   base: string,
   patch: string[],
@@ -62,10 +71,4 @@ function run(root: string) {
   }
 }
 
-describe("plist-merge-patch", function() {
-  describe("in real case scenarios", function() {
-    var base = "real-use-cases/";
-    it("can patch transport security to allow arbitrary loads", run(base + "transport-security-arbitrary-loads"));
-    it("can patch a limit on the supported interface orientations", run(base + "limit-supported-interface-orientations"));
-  })
-});
+
