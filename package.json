@@ -13,8 +13,7 @@
     "typescript": "^1.6.2"
   },
   "scripts": {
-    "install": "node ./node_modules/tsd/build/cli.js install",
     "test": "./node_modules/typescript/bin/tsc -p . &&  ./node_modules/mocha/bin/mocha tests/test.js",
-    "prepublish": "./node_modules/typescript/bin/tsc -p . && ./node_modules/mocha/bin/mocha tests/test.js"
+    "prepublish": "node ./node_modules/tsd/build/cli.js install && ./node_modules/typescript/bin/tsc -p . && ./node_modules/mocha/bin/mocha tests/test.js"
   }
 }

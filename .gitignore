@@ -5,3 +5,4 @@
 *.js.map
 .tsdrc
 *.tgz
+npm-debug.log
