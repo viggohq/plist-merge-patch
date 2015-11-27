@@ -3,6 +3,10 @@
   "main": "src/index.js",
   "license": "Apache-2.0",
   "version": "0.0.2",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/NativeScript/plist-merge-patch.git"
+  },
   "dependencies": {
     "json-merge-patch": "^0.2.3",
     "plist": "^1.2.0"
