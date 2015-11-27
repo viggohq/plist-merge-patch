@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": true
+    },
+    "files": [
+        "typings/tsd.d.ts",
+        "src/index.ts",
+        "src/deps.d.ts",
+        "tests/test.ts"
+    ]
+}

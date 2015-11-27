@@ -1,10 +1,20 @@
 {
-  "name": "plist-merge",
+  "name": "plist-merge-patch",
+  "main": "src/index.js",
   "license": "Apache-2.0",
+  "version": "0.0.1",
+  "dependencies": {
+    "json-merge-patch": "^0.2.3",
+    "plist": "^1.2.0"
+  },
   "devDependencies": {
-    "mocha": "^2.3.4"
+    "mocha": "^2.3.4",
+    "tsd": "^0.6.5",
+    "typescript": "^1.6.2"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests/test.js"
+    "install": "node ./node_modules/tsd/build/cli.js install",
+    "test": "./node_modules/typescript/bin/tsc -p . &&  ./node_modules/mocha/bin/mocha tests/test.js",
+    "prepublish": "./node_modules/typescript/bin/tsc -p . && ./node_modules/mocha/bin/mocha tests/test.js"
   }
 }
