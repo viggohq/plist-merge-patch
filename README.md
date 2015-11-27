@@ -26,7 +26,6 @@ fs.writeFileSync("Result.plist", result);
 ## Working with the repo
 ```
 $ npm install
-$ npm start
 
 $ npm test
 $ npm test
