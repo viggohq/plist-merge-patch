@@ -9,6 +9,7 @@ describe("plist-merge-patch", function() {
     it("transport security to allow arbitrary loads", run(base + "transport-security-arbitrary-loads"));
     it("a limit on the supported interface orientations", run(base + "limit-supported-interface-orientations"));
     it("view controller status bar appearance, status bar style, and hidden", run(base + "status-bar-appearance-style-and-hidden"));
+    it("location, when in usage, description message", run(base + "location-when-in-usage-message"));
   })
 });
 
