@@ -43,7 +43,12 @@ export class PlistSession {
 		
 		if (this.patches) {
 			this.patches.forEach(patch => {
-				this.log(`Plist-Merge-Patch: Patch '${ this.base.name }' with '${ patch.name }'.`);
+				if (this.base) {
+					this.log(`Plist-Merge-Patch: Patch '${ this.base.name }' with '${ patch.name }'.`);	
+				} else {
+					this.log(`Plist-Merge-Patch: Patch with '${ patch.name }'.`);
+				}
+				
 				var patchString = patch.read();
 				var patchJson = plist.parse(patchString);
 				jsonPlist = jsonmergepatch.apply(jsonPlist, patchJson);		

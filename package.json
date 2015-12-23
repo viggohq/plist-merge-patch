@@ -2,7 +2,7 @@
   "name": "plist-merge-patch",
   "main": "src/index.js",
   "license": "Apache-2.0",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/NativeScript/plist-merge-patch.git"

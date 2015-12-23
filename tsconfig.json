@@ -10,6 +10,7 @@
         "typings/tsd.d.ts",
         "src/index.ts",
         "src/deps.d.ts",
-        "tests/test.ts"
+        "tests/test.ts",
+        "index.d.ts"
     ]
 }
