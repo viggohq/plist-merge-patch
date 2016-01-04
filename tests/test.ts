@@ -46,19 +46,11 @@ function run(root: string) {
     }
     
     var plist = new plistmergepatch.PlistSession(tracer);
-    
-    if (json.base) {
-      plist.load(makePatch(json.base));
-    }
-    
+
     if (json.patch) {
       json.patch.forEach(name => plist.patch(makePatch(name)));
     }
-    
-    if (json.app) {
-      plist.patch(makePatch(json.app));
-    }
-    
+
     var result = plist.build();
     var expectedPlist = readFile(json.expected.plist);
     

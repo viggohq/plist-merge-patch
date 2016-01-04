@@ -1,4 +1,4 @@
-log: Plist-Merge-Patch: Start.
-log: Plist-Merge-Patch: Load: 'base.plist'.
-log: Plist-Merge-Patch: Patch 'base.plist' with 'app.plist'.
-log: Plist-Merge-Patch: Complete.
+log: Start
+log: Patch 'base.plist'
+log: Patch 'app.plist'
+log: Complete

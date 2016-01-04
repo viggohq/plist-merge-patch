@@ -13,7 +13,6 @@ export interface Patch {
 export class PlistSession {
 	private console: Reporter;
 	
-	private base: Patch;
 	private patches: Patch[];
 	
 	constructor(console: Reporter) {
@@ -21,34 +20,19 @@ export class PlistSession {
 		this.patches = [];
 	}
 	
-	public load(patch: Patch) {
-		this.base = patch;
-	}
-	
 	public patch(patch: Patch) {
 		this.patches.push(patch);
 	}
 	
 	public build(): string {
-		this.log(`Plist-Merge-Patch: Start.`);
+		this.log(`Start`);
 		var jsonPlist: any;
 		
-		if (this.base) {
-			this.log(`Plist-Merge-Patch: Load: '${ this.base.name }'.`);
-			var plistString = this.base.read();
-			jsonPlist = plist.parse(plistString);
-		} else {
-			jsonPlist = {};
-		}
+		jsonPlist = {};
 		
 		if (this.patches) {
 			this.patches.forEach(patch => {
-				if (this.base) {
-					this.log(`Plist-Merge-Patch: Patch '${ this.base.name }' with '${ patch.name }'.`);	
-				} else {
-					this.log(`Plist-Merge-Patch: Patch with '${ patch.name }'.`);
-				}
-				
+				this.log(`Patch '${ patch.name }'`);
 				var patchString = patch.read();
 				var patchJson = plist.parse(patchString);
 				jsonPlist = jsonmergepatch.apply(jsonPlist, patchJson);		
@@ -56,7 +40,7 @@ export class PlistSession {
 		}
 		
 		var resultString = plist.build(jsonPlist);
-		this.log(`Plist-Merge-Patch: Complete.`);
+		this.log(`Complete`);
 		return resultString;
 	}
 	

@@ -9,7 +9,6 @@ export interface Patch {
 
 export class PlistSession {
 	constructor(console: Reporter);
-	public load(patch: Patch): void;
 	public patch(patch: Patch): void;
 	public build(): string;
 }
