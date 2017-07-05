@@ -8,13 +8,14 @@
     "url": "https://github.com/NativeScript/plist-merge-patch.git"
   },
   "dependencies": {
-    "json-merge-patch": "^0.2.3",
-    "plist": "^1.2.0"
+    "lodash": "4.17.4",
+    "plist": "2.1.0"
   },
   "devDependencies": {
+    "@types/lodash": "4.14.50",
     "mocha": "^2.3.4",
     "tsd": "^0.6.5",
-    "typescript": "^1.6.2"
+    "typescript": "2.4.1"
   },
   "scripts": {
     "test": "./node_modules/typescript/bin/tsc -p . &&  ./node_modules/mocha/bin/mocha tests/test.js",

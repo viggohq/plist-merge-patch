@@ -1,49 +1,46 @@
 import * as plist from "plist"
-import * as jsonmergepatch from "json-merge-patch"
+import { PlistMerger, IPlistMerger } from "./plist-merger"
 
 export interface Reporter {
 	log?(msg: string): void;
+	warn?(msg: string): void;
 }
 
 export interface Patch {
-	name: string,
-	read(): string	
+	name: string;
+	read(): string;
 }
 
 export class PlistSession {
-	private console: Reporter;
-	
 	private patches: Patch[];
-	
-	constructor(console: Reporter) {
-		this.console = console;
+
+	constructor(private console: Reporter) {
 		this.patches = [];
 	}
-	
+
 	public patch(patch: Patch) {
 		this.patches.push(patch);
 	}
-	
+
 	public build(): string {
 		this.log(`Start`);
-		var jsonPlist: any;
-		
-		jsonPlist = {};
-		
+		const plistMerger: IPlistMerger = new PlistMerger(this.console);
+		let jsonPlist: any = {};
+
 		if (this.patches) {
 			this.patches.forEach(patch => {
-				this.log(`Patch '${ patch.name }'`);
-				var patchString = patch.read();
-				var patchJson = plist.parse(patchString);
-				jsonPlist = jsonmergepatch.apply(jsonPlist, patchJson);		
+				this.log(`Patch '${patch.name}'`);
+				const patchString = patch.read();
+				const patchJson = plist.parse(patchString);
+				jsonPlist = plistMerger.merge(jsonPlist, patchJson);
 			});
 		}
-		
-		var resultString = plist.build(jsonPlist);
+
+		const resultString = plist.build(jsonPlist);
 		this.log(`Complete`);
 		return resultString;
 	}
-	
+
 	private log(msg: string) {
 		if (this.console && this.console.log) {
 			this.console.log(msg);
