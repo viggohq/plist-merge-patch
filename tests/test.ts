@@ -57,7 +57,6 @@ function run(root: string) {
         const result = plist.build();
         const expectedPlist = readFile(json.expected.plist);
 
-        // TODO: Implement a "plist equal".
         assert.equal(result, expectedPlist, "Plist Merge Patch failed to produce the expected result.");
 
         if (json.expected.log) {

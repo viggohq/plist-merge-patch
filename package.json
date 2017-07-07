@@ -21,7 +21,7 @@
   },
   "scripts": {
     "tslint": "tslint -p tsconfig.json --type-check",
-    "test": "tsc && mocha tests/test.js",
-    "prepublish": " tsc -p tsconfig.json && mocha tests/test.js"
+    "test": "node ./node_modules/tslint/bin/tslint -p tsconfig.json --type-check && node ./node_modules/typescript/bin/tsc && node ./node_modules/mocha/bin/mocha tests/test.js",
+    "prepublish": "node ./node_modules/typescript/bin/tsc -p tsconfig.json && node ./node_modules/mocha/bin/mocha tests/test.js"
   }
 }
