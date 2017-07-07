@@ -1,30 +1,21 @@
 import * as plist from "plist";
-import { PlistMerger, IPlistMerger } from "./plist-merger";
+import { PlistMerger } from "./plist-merger";
+import * as types from "../index";
 
-export interface Reporter {
-    log?(msg: string): void;
-    warn?(msg: string): void;
-}
+export class PlistSession implements types.PlistSession {
+    private patches: types.Patch[];
 
-export interface Patch {
-    name: string;
-    read(): string;
-}
-
-export class PlistSession {
-    private patches: Patch[];
-
-    constructor(private console: Reporter) {
+    constructor(private console: types.Reporter) {
         this.patches = [];
     }
 
-    public patch(patch: Patch) {
+    public patch(patch: types.Patch) {
         this.patches.push(patch);
     }
 
     public build(): string {
         this.log(`Start`);
-        const plistMerger: IPlistMerger = new PlistMerger(this.console);
+        const plistMerger: types.IPlistMerger = new PlistMerger(this.console);
         let jsonPlist: any = {};
 
         if (this.patches) {

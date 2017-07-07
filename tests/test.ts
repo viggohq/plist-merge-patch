@@ -2,6 +2,7 @@ import * as assert from "assert";
 import * as fs from "fs";
 import * as plistmergepatch from "../src/index";
 import * as path from "path";
+import { Patch } from "../index";
 
 describe("plist-merge-patch", function () {
     describe("in real case scenarios, can patch", function () {
@@ -35,7 +36,7 @@ function run(root: string) {
             return fs.readFileSync(path.join(folderPath, file)).toString().replace(/\r\n/g, "\n");
         }
 
-        function makePatch(name: string): plistmergepatch.Patch {
+        function makePatch(name: string): Patch {
             return {
                 name: name,
                 read: () => readFile(name)

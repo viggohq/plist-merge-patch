@@ -1,14 +1,5 @@
 import * as _ from "lodash";
-import { Reporter } from "./index";
-
-export interface IPlistMerger {
-    merge(base: any, patch: any): any;
-}
-
-export interface ICFBundleURLType {
-    CFBundleTypeRole: string;
-    CFBundleURLSchemes: string[];
-}
+import { Reporter, IPlistMerger, ICFBundleURLType } from "../index";
 
 export class PlistMerger implements IPlistMerger {
     private static CFBBUNDLEURLTYPES = "CFBundleURLTypes";
