@@ -2,22 +2,26 @@
   "name": "plist-merge-patch",
   "main": "src/index.js",
   "license": "Apache-2.0",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/NativeScript/plist-merge-patch.git"
   },
   "dependencies": {
-    "json-merge-patch": "^0.2.3",
-    "plist": "^1.2.0"
+    "lodash": "4.17.4",
+    "plist": "2.1.0"
   },
   "devDependencies": {
-    "mocha": "^2.3.4",
-    "tsd": "^0.6.5",
-    "typescript": "^1.6.2"
+    "@types/lodash": "4.14.50",
+    "@types/mocha": "2.2.41",
+    "@types/node": "8.0.8",
+    "mocha": "2.3.4",
+    "tslint": "5.5.0",
+    "typescript": "2.4.1"
   },
   "scripts": {
-    "test": "./node_modules/typescript/bin/tsc -p . &&  ./node_modules/mocha/bin/mocha tests/test.js",
-    "prepublish": "node ./node_modules/tsd/build/cli.js install && ./node_modules/typescript/bin/tsc -p . && ./node_modules/mocha/bin/mocha tests/test.js"
+    "tslint": "tslint -p tsconfig.json --type-check",
+    "test": "node ./node_modules/tslint/bin/tslint -p tsconfig.json --type-check && node ./node_modules/typescript/bin/tsc && node ./node_modules/mocha/bin/mocha tests/test.js",
+    "prepublish": "node ./node_modules/typescript/bin/tsc -p tsconfig.json && node ./node_modules/mocha/bin/mocha tests/test.js"
   }
 }
