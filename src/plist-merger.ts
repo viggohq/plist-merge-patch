@@ -1,5 +1,14 @@
 import * as _ from "lodash";
-import { Reporter } from "./index"
+import { Reporter } from "./index";
+
+export interface IPlistMerger {
+    merge(base: any, patch: any): any;
+}
+
+export interface ICFBundleURLType {
+    CFBundleTypeRole: string;
+    CFBundleURLSchemes: string[];
+}
 
 export class PlistMerger implements IPlistMerger {
     private static CFBBUNDLEURLTYPES = "CFBundleURLTypes";
@@ -49,13 +58,4 @@ export class PlistMerger implements IPlistMerger {
             this.console.warn(msg);
         }
     }
-}
-
-export interface IPlistMerger {
-    merge(base: any, patch: any): any
-}
-
-export interface ICFBundleURLType {
-    CFBundleTypeRole: string;
-    CFBundleURLSchemes: string[];
 }

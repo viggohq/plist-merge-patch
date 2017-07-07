@@ -15,10 +15,12 @@
     "@types/lodash": "4.14.50",
     "mocha": "^2.3.4",
     "tsd": "^0.6.5",
+    "tslint": "5.5.0",
     "typescript": "2.4.1"
   },
   "scripts": {
-    "test": "./node_modules/typescript/bin/tsc -p . &&  ./node_modules/mocha/bin/mocha tests/test.js",
-    "prepublish": "node ./node_modules/tsd/build/cli.js install && ./node_modules/typescript/bin/tsc -p . && ./node_modules/mocha/bin/mocha tests/test.js"
+    "tslint": "tslint -p tsconfig.json --type-check",
+    "test": "tsc && mocha tests/test.js",
+    "prepublish": " tsc -p tsconfig.json && mocha tests/test.js"
   }
 }
