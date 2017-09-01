@@ -3,6 +3,7 @@ import { Reporter, IPlistMerger, ICFBundleURLType } from "../index";
 
 export class PlistMerger implements IPlistMerger {
     private static CFBBUNDLEURLTYPES = "CFBundleURLTypes";
+    private static LSAPPLICATIONQUERIESSCHEMES = "LSApplicationQueriesSchemes";
 
     constructor(private console: Reporter) { }
 
@@ -34,9 +35,21 @@ export class PlistMerger implements IPlistMerger {
         return baseValue;
     }
 
+    private mergeLSApplicationQueriesSchemes(baseValue: string[], patchValue: string[]): string[] {
+        for (let patchElement of patchValue) {
+            if (!baseValue.some(x => x === patchElement)) {
+                baseValue.push(patchElement);
+            }
+        }
+
+        return baseValue;
+    }
+
     private customizer(baseValue: any, patchValue: any, key: string) {
         if (key === PlistMerger.CFBBUNDLEURLTYPES && !!baseValue) {
             return this.mergeCFBundleURLTypes(baseValue, patchValue);
+        } else if (key === PlistMerger.LSAPPLICATIONQUERIESSCHEMES && !!baseValue) {
+            return this.mergeLSApplicationQueriesSchemes(baseValue, patchValue);
         }
 
         if (_.isArray(baseValue)) {

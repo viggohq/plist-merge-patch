@@ -1,0 +1,4 @@
+log: Start
+log: Patch 'base.plist'
+log: Patch 'app.plist'
+log: Complete
