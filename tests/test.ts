@@ -13,6 +13,8 @@ describe("plist-merge-patch", function () {
         it("location, when in usage, description message", run(base + "location-when-in-usage-message"));
         it("url types when both have the same type role", run(base + "url-types-same-type-role"));
         it("url types when they have different type role", run(base + "url-types-different-type-role"));
+        it("queries schemes when they are different", run(base + "queries-schemes-different"));
+        it("queries schemes when there is a duplicate scheme", run(base + "queries-schemes-with-duplicate"));
     });
 });
 
