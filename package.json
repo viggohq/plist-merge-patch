@@ -2,7 +2,7 @@
   "name": "@viggo/plist-merge-patch",
   "main": "src/index.js",
   "license": "Apache-2.0",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/viggohq/plist-merge-patch.git"
