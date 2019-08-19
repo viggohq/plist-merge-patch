@@ -1,11 +1,18 @@
 import * as _ from "lodash";
 import { Reporter, IPlistMerger, ICFBundleURLType } from "../index";
 
+export interface Options {
+    overwriteCfBundleUrlTypes?: boolean;
+}
+
 export class PlistMerger implements IPlistMerger {
     private static CFBBUNDLEURLTYPES = "CFBundleURLTypes";
     private static LSAPPLICATIONQUERIESSCHEMES = "LSApplicationQueriesSchemes";
 
-    constructor(private console: Reporter) { }
+    constructor(
+        private console: Reporter,
+        private options: Options
+    ) { }
 
     public merge(base: any, patch: any): any {
         const baseClone = _.cloneDeep(base);
@@ -14,6 +21,10 @@ export class PlistMerger implements IPlistMerger {
     }
 
     private mergeCFBundleURLTypes(baseValue: ICFBundleURLType[], patchValue: ICFBundleURLType[]): ICFBundleURLType[] {
+        if (this.options && this.options.overwriteCfBundleUrlTypes === true) {
+            return patchValue;
+        }
+
         for (let patchElement of patchValue) {
             let shouldAddToBase = true;
             for (let baseElement of baseValue) {

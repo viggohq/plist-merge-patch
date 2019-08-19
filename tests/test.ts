@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as plistmergepatch from "../src/index";
 import * as path from "path";
 import { Patch } from "../index";
+import { Options } from '../src/plist-merger';
 
 describe("plist-merge-patch", function () {
     describe("in real case scenarios, can patch", function () {
@@ -13,6 +14,7 @@ describe("plist-merge-patch", function () {
         it("location, when in usage, description message", run(base + "location-when-in-usage-message"));
         it("url types when both have the same type role", run(base + "url-types-same-type-role"));
         it("url types when they have different type role", run(base + "url-types-different-type-role"));
+        it("url types when overwrite option is passed", run(base + "url-types-overwrite"));
         it("queries schemes when they are different", run(base + "queries-schemes-different"));
         it("queries schemes when there is a duplicate scheme", run(base + "queries-schemes-with-duplicate"));
     });
@@ -26,6 +28,7 @@ interface TestInfo {
         plist: string;
         log?: string;
     };
+    options?: Options;
 }
 
 function run(root: string) {
@@ -51,7 +54,7 @@ function run(root: string) {
             warn: (msg: string) => { log += `warn: ${msg}\n`; }
         };
 
-        const plist = new plistmergepatch.PlistSession(tracer);
+        const plist = new plistmergepatch.PlistSession(tracer, json.options);
 
         if (json.patch) {
             json.patch.forEach(name => plist.patch(makePatch(name)));

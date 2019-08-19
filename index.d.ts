@@ -8,8 +8,12 @@ export interface Patch {
     read(): string;
 }
 
+export interface Options {
+    overwriteCfBundleUrlTypes?: boolean;
+}
+
 export class PlistSession {
-    constructor(console: Reporter);
+    constructor(console: Reporter, options?: Options);
     public patch(patch: Patch): void;
     public build(): string;
 }

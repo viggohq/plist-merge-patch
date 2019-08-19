@@ -1,0 +1,10 @@
+{
+	"patch": ["base.plist", "app.plist"],
+	"expected": {
+		"plist": "expected.plist",
+		"log": "expected.log"
+	},
+	"options": {
+		"overwriteCfBundleUrlTypes": true
+	}
+}

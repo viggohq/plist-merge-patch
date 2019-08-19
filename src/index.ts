@@ -1,11 +1,14 @@
 import * as plist from "plist";
-import { PlistMerger } from "./plist-merger";
+import { PlistMerger, Options } from "./plist-merger";
 import * as types from "../index";
 
 export class PlistSession implements types.PlistSession {
     private patches: types.Patch[];
 
-    constructor(private console: types.Reporter) {
+    constructor(
+        private console: types.Reporter,
+        private options: Options = null
+    ) {
         this.patches = [];
     }
 
@@ -15,7 +18,7 @@ export class PlistSession implements types.PlistSession {
 
     public build(): string {
         this.log(`Start`);
-        const plistMerger: types.IPlistMerger = new PlistMerger(this.console);
+        const plistMerger: types.IPlistMerger = new PlistMerger(this.console, this.options);
         let jsonPlist: any = {};
 
         if (this.patches) {
